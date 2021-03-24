@@ -4,8 +4,10 @@ class Person:
 
     #constructor
     #self is "this" and should be the first param
-    def __init__(self, name):
+    def __init__(self, name="default", age=18):
         self.name = name
+        # if a field starts with an _ it means that it should not be touched outside the class
+        self._age = age
 
     @classmethod
     def class_method(cls, num1, num2):
@@ -28,13 +30,18 @@ class Person:
 class Employee(Person):
 
     def __init__(self, code):
-        Person.__init__(self, "")
+        #Person.__init__(self, "")
+        #To call the methods of the super class we can use either the commented 
+        #code above or use the super keyword
+        super().__init__()
         self.code = code
     
     def show_code(self):
         print('The code is {0}'.format(self.code))
 
     def greet_with(self, greeting):
+        #Calling the parent class methos with the same name
+        super().greet_with(greeting)
         print('This is from the child class, {} {}'.format(greeting, self.code))
 
 #no new keyword for instance creation
@@ -44,6 +51,3 @@ class Employee(Person):
 
 employee = Employee(10)
 employee.greet_with("Namaste")
-
-Employee.class_method(2,3)
-Employee.static_method(1,2)
