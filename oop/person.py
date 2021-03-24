@@ -44,6 +44,19 @@ class Employee(Person):
         super().greet_with(greeting)
         print('This is from the child class, {} {}'.format(greeting, self.code))
 
+    #Dunder methods, special methods
+    #toString
+    def __str__(self):
+        return f'code is {self.code}'
+    
+    def __eq__(self, other):
+        return self.code == other.code
+
+    def __call__(self, name):
+        print(f'The name is {name}')
+
+
+
 #no new keyword for instance creation
 # person = Person("Amar")
 # person.show_name()
@@ -51,3 +64,9 @@ class Employee(Person):
 
 employee = Employee(10)
 employee.greet_with("Namaste")
+
+print(str(employee))
+
+print(employee == Employee(890))
+
+employee("Magic")
